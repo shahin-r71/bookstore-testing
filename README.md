@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Bookstore Testing
+
+A dynamic book catalog application built with Next.js that demonstrates data generation and display techniques.
+
+
+## Features
+
+- **Dynamic Book Generation**: Uses Faker.js to create realistic book data with titles, authors, and publishers
+- **Multiple View Options**: Toggle between Gallery and Table views
+- **Internationalization**: Support for multiple languages/regions (English, French, German, Spanish, Italian, Japanese)
+- **Infinite Scrolling**: Load more books as you scroll
+- **Detailed Book Information**: View book details including reviews and ratings
+- **Responsive Design**: Works on desktop and mobile devices
+
+## Technology Stack
+
+- **Framework**: Next.js 14+ with App Router
+- **UI Components**: Custom components with Tailwind CSS
+- **State Management**: Zustand for global state
+- **Data Generation**: Faker.js for dynamic content
+- **TypeScript**: Type-safe code throughout the application
 
 ## Getting Started
 
-First, run the development server:
+First, install the dependencies:
+
+```bash
+npm install
+# or
+yarn install
+```
+
+use `--legacy-peer-deps` flag if installation issue occur.
+
+Then, run the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `/app`: Next.js app router pages and API routes
+- `/components`: UI components including BookTable and GalleryView
+- `/lib`: Utility functions and the BookGenerator class
+- `/types`: TypeScript type definitions
 
-## Learn More
+## API
 
-To learn more about Next.js, take a look at the following resources:
+The application includes a REST API for generating book data:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+GET /api/books?region=English(US)&seed=123&likes=5&reviews=3&page=1&limit=20
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Parameters:
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `region`: Language/region for book data (default: "English(US)")
+- `seed`: Seed for deterministic generation (default: "42")
+- `likes`: Average number of likes per book (default: 0)
+- `reviews`: Average number of reviews per book (default: 0)
+- `page`: Page number for pagination (default: 1)
+- `limit`: Number of books per page (default: 20)
